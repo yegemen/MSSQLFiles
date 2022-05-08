@@ -20,7 +20,7 @@ ilNo int foreign key references il(ilNo) NOT NULL
 create table soruZorluk
 (
 SzId int primary key identity(1,1),
-SzPuan int NOT NULL,  --aynı zorluktaki sorularin puanlari ayni olacagi icin.
+SzPuan int NOT NULL,  --aynÄ± zorluktaki sorularin puanlari ayni olacagi icin.
 SzAdi varchar (20) NOT NULL  --kolay, orta, zor vb bilgileri tutulacak.
 )
 
@@ -41,7 +41,7 @@ cvp_d varchar(50) NOT NULL,
 dogru_cvp varchar(50) NOT NULL,
 GndTarih date,
 Uno int foreign key references uyelik(Uno) NOT NULL,
-SzId int foreign key references soruZorluk(SzId) NOT NULL, --daha sonra tablo birleştirme islemi ile zorluk ve puanlarini gosterebiliriz.
+SzId int foreign key references soruZorluk(SzId) NOT NULL, --daha sonra tablo birleÅŸtirme islemi ile zorluk ve puanlarini gosterebiliriz.
 KtgId int foreign key references soruKategori(KtgId) NOT NULL
 )
 
@@ -64,13 +64,13 @@ jkrAdi varchar(25) NOT NULL,
 create table uyeYaris  -- uye yarisa girince 20 soru sorulacak
 (
 YrsId int primary key identity(1,1),
-TplmPuan int NOT NULL, -- girdiği yarıştaki toplam puanı
+TplmPuan int NOT NULL, -- girdiÄŸi yarÄ±ÅŸtaki toplam puanÄ±
 dogruSay int NOT NULL,
 yanlisSay int NOT NULL,
 YrsTarih date NOT NULL,
 Uno int foreign key references uyelik(Uno) NOT NULL,
 KtgId int foreign key references soruKategori(KtgId) NOT NULL, --uye bir kategori secip o sekilde yarisacagi icin.
-jkrId int foreign key references joker(jkrId) NULL --boş bırakılırsa üye joker kullanmamıştır.
+jkrId int foreign key references joker(jkrId) NULL --boÅŸ bÄ±rakÄ±lÄ±rsa Ã¼ye joker kullanmamÄ±ÅŸtÄ±r.
 )
 
 create table istatistik
@@ -100,7 +100,7 @@ istNo int foreign key references istatistik(istNo) NOT NULL --hediye verilecek u
 --
 
 /*
-asagida siteYonetim tablosu var. site yoneticilerinin bilgileri bu tabloda tutulacak. yntcGorev ve yntcil sutunlari diger 2 tablo ile iliskilidir. Normalizasyon a uymasi icin diger 2 tabloyu olusturup iliskilendirdim, yanlarında da açıkladım.
+asagida siteYonetim tablosu var. site yoneticilerinin bilgileri bu tabloda tutulacak. yntcGorev ve yntcil sutunlari diger 2 tablo ile iliskilidir. Normalizasyon a uymasi icin diger 2 tabloyu olusturup iliskilendirdim, yanlarÄ±nda da aÃ§Ä±kladÄ±m.
 */
 
 create table yonetimGorev --gorev bilgileri bu tabloda tutulur.
@@ -116,7 +116,7 @@ yntcAdi varchar(20) NOT NULL,
 yntcSoyadi varchar(20) NOT NULL
 )
 
-create table YoneticiGorev --bir yönetici birden fazla görevi yapabileceği için bu tabloyu oluşturdum.
+create table YoneticiGorev --bir yÃ¶netici birden fazla gÃ¶revi yapabileceÄŸi iÃ§in bu tabloyu oluÅŸturdum.
 (
 yntcNo int foreign key references siteYonetim(yntcNo) NOT NULL,
 GrvNo int foreign key references yonetimGorev(GrvNo) NOT NULL
@@ -125,16 +125,16 @@ GrvNo int foreign key references yonetimGorev(GrvNo) NOT NULL
 --
 
 /*
-asagida KurulBilgi tablosu var. Kurul üyelerinin bilgileri bu tabloda tutulacak, diğer 2 tabloda ana tablo ile ilgili tutulan bilgiler var. yanlarında da açıkladım. oluşturulma sıralarının farklı olması ilişkilendirmede sorun yaşanmaması içindir.
+asagida KurulBilgi tablosu var. Kurul Ã¼yelerinin bilgileri bu tabloda tutulacak, diÄŸer 2 tabloda ana tablo ile ilgili tutulan bilgiler var. yanlarÄ±nda da aÃ§Ä±kladÄ±m. oluÅŸturulma sÄ±ralarÄ±nÄ±n farklÄ± olmasÄ± iliÅŸkilendirmede sorun yaÅŸanmamasÄ± iÃ§indir.
 */
 
-create table kurulMeslek --meslek bilgilerini tutmak için
+create table kurulMeslek --meslek bilgilerini tutmak iÃ§in
 (
 Mno int primary key identity(1,1),
 MesAdi varchar(25)
 )
 
-create table kurulIl --il bilgilerini tutmak için
+create table kurulIl --il bilgilerini tutmak iÃ§in
 (
 ilNo int primary key identity(1,1),
 ilAdi varchar(20) NOT NULL
@@ -153,10 +153,10 @@ ilNo int foreign key references kurulIl(ilNo) NOT NULL
 --
 
 /*
-aşağıda sosyalGorev tablosu var, hangi sosyal medya sorumlularının hangi sosyal medya hesapları ile ilgileneceğinin bilgilerini tutmak için oluşturdum. yanlarında da açıkladım. oluşturulma sıralarının farklı olması ilişkilendirmede sorun yaşanmaması içindir.
+aÅŸaÄŸÄ±da sosyalGorev tablosu var, hangi sosyal medya sorumlularÄ±nÄ±n hangi sosyal medya hesaplarÄ± ile ilgileneceÄŸinin bilgilerini tutmak iÃ§in oluÅŸturdum. yanlarÄ±nda da aÃ§Ä±kladÄ±m. oluÅŸturulma sÄ±ralarÄ±nÄ±n farklÄ± olmasÄ± iliÅŸkilendirmede sorun yaÅŸanmamasÄ± iÃ§indir.
 */
 
-create table siteSosyalMedya -- sitenin hangi sosyal medya hesapları oldugu.
+create table siteSosyalMedya -- sitenin hangi sosyal medya hesaplarÄ± oldugu.
 (
 SmId int primary key identity(1,1),
 SmAd varchar(20) NOT NULL,
@@ -180,10 +180,10 @@ SSId int foreign key references sosyalSorumlular(SSId) NOT NULL
 --
 
 /*
-aşağıda siteAnket tablosu var, anket türleri ve anket bilgileri tutuluyor, ayrıca açılan anketi üyelerin görüp görememesini belirleyebiliyoruz.. yanlarında da açıkladım. oluşturma sıralarının farklı olması ilişkilendirmede sorun olmaması için.
+aÅŸaÄŸÄ±da siteAnket tablosu var, anket tÃ¼rleri ve anket bilgileri tutuluyor, ayrÄ±ca aÃ§Ä±lan anketi Ã¼yelerin gÃ¶rÃ¼p gÃ¶rememesini belirleyebiliyoruz.. yanlarÄ±nda da aÃ§Ä±kladÄ±m. oluÅŸturma sÄ±ralarÄ±nÄ±n farklÄ± olmasÄ± iliÅŸkilendirmede sorun olmamasÄ± iÃ§in.
 */
 
-create table anketTur --anket türleri bu tabloda tutulacak.
+create table anketTur --anket tÃ¼rleri bu tabloda tutulacak.
 (
 TurId int primary key identity(1,1),
 TurAdi varchar(20) NOT NULL
@@ -197,26 +197,26 @@ AnktAciklama varchar(200) NOT NULL,
 TurId int foreign key references anketTur(TurId) NOT NULL
 )
 
-create table anketDuzey -- oluşturulan anketi sadece yöneticiler mi görsün yoksa üyeler de görebilsin mi?
+create table anketDuzey -- oluÅŸturulan anketi sadece yÃ¶neticiler mi gÃ¶rsÃ¼n yoksa Ã¼yeler de gÃ¶rebilsin mi?
 (
 DzNo int primary key identity(1,1),
-DzDeger bit NOT NULL, -- 0 sadece yöneticiler, 1 üyeler
+DzDeger bit NOT NULL, -- 0 sadece yÃ¶neticiler, 1 Ã¼yeler
 AnktNo int foreign key references siteAnket(AnktNo) NOT NULL
 )
 
 --
 
 /*
-aşağıda mobilKategori tablosu var sitenin mobil uygulamasın takibi içindir, mobil uygulama kategorisi ve bununla ilişkili 2 tablo bulunuyor, mobilVersiyon tablosunda uygulamaların versiyon bilgileri, mobilKullaniciSay tablosunda hangi işletim sistemini kaç kullanıcı kullandığı ve hangi versiyonu kullandığı.. yanlarında da açıkladım. oluşturma sıralarının farklı olması ilişkilendirmede sorun olmaması için.
+aÅŸaÄŸÄ±da mobilKategori tablosu var sitenin mobil uygulamasÄ±n takibi iÃ§indir, mobil uygulama kategorisi ve bununla iliÅŸkili 2 tablo bulunuyor, mobilVersiyon tablosunda uygulamalarÄ±n versiyon bilgileri, mobilKullaniciSay tablosunda hangi iÅŸletim sistemini kaÃ§ kullanÄ±cÄ± kullandÄ±ÄŸÄ± ve hangi versiyonu kullandÄ±ÄŸÄ±.. yanlarÄ±nda da aÃ§Ä±kladÄ±m. oluÅŸturma sÄ±ralarÄ±nÄ±n farklÄ± olmasÄ± iliÅŸkilendirmede sorun olmamasÄ± iÃ§in.
 */
 
-create table mobilKategori --ana tablo bu, işletim sistemi kullandığı girilecek.
+create table mobilKategori --ana tablo bu, iÅŸletim sistemi kullandÄ±ÄŸÄ± girilecek.
 (
 mkNo int primary key identity(1,1),
 mkAdi varchar(20) NOT NULL,  --android, ios vb.
 )
 
-create table mobilVersiyon --işletim sistemlerinin versiyonları girilece
+create table mobilVersiyon --iÅŸletim sistemlerinin versiyonlarÄ± girilece
 (
 mvNo int primary key identity(1,1),
 mvVers float NOT NULL,
@@ -227,11 +227,11 @@ create table mobilKullaniciSay
 (
 mkulId int primary key identity(1,1),
 mkulSay int NOT NULL,
-mkNo int foreign key references mobilKategori(mkNo) NOT NULL, --hangi işletim sisteminden kullandığı
-mvNo int foreign key references mobilVersiyon(mvNo) NOT NULL --hangi versiyonu kullandığı
+mkNo int foreign key references mobilKategori(mkNo) NOT NULL, --hangi iÅŸletim sisteminden kullandÄ±ÄŸÄ±
+mvNo int foreign key references mobilVersiyon(mvNo) NOT NULL --hangi versiyonu kullandÄ±ÄŸÄ±
 )
 
--- 4. Her bir kategoriden en fazla yarışan üyelerden hangilerinin en yüksek puanı aldığını, hangi kategoride yarıştığını ve kaç soruyu doğru, kaç soruyu yanlış cevapladığını listeleyecek SQL sorgusunu yazınız.
+-- 4. Her bir kategoriden en fazla yarÄ±ÅŸan Ã¼yelerden hangilerinin en yÃ¼ksek puanÄ± aldÄ±ÄŸÄ±nÄ±, hangi kategoride yarÄ±ÅŸtÄ±ÄŸÄ±nÄ± ve kaÃ§ soruyu doÄŸru, kaÃ§ soruyu yanlÄ±ÅŸ cevapladÄ±ÄŸÄ±nÄ± listeleyecek SQL sorgusunu yazÄ±nÄ±z.
 
 SELECT sk.KtgAdi, MAX(COUNT(u.Uno)) as MaksYaris FROM uyelik u, uyeYaris uyrs, soruKategori sk
 where u.Uno=uyrs.Uno and uyrs.KtgId=sk.KtgId
@@ -253,7 +253,7 @@ where uyeyrs.Uno=KtgPuan.Uno
 
 
 
--- 5. Bugüne kadar hiç soru göndermeyen ancak yarışmaya katılan üyelerin en yüksek puan aldığı yarışmada kaç soruyu doğru cevapladığını, kaç yanlışı olduğunu listeleyecek SQL sorgusunu yazınız.
+-- 5. BugÃ¼ne kadar hiÃ§ soru gÃ¶ndermeyen ancak yarÄ±ÅŸmaya katÄ±lan Ã¼yelerin en yÃ¼ksek puan aldÄ±ÄŸÄ± yarÄ±ÅŸmada kaÃ§ soruyu doÄŸru cevapladÄ±ÄŸÄ±nÄ±, kaÃ§ yanlÄ±ÅŸÄ± olduÄŸunu listeleyecek SQL sorgusunu yazÄ±nÄ±z.
 
 
 SELECT u.Uno, u.Uadi, MAX(uyrs.TplmPuan) as MaksPuan FROM uyeYaris uyrs, uyelik u
@@ -270,7 +270,7 @@ where uyrs.Uno=yaris.Uno
 
 
 
--- 6. Bugüne kadar 20’den fazla soru gönderen ve hediye alan her bir üyenin her bir kategoriden, her bir zorluk düzeyinde kaç soru gönderdiğini listeleyecek bir SQL sorgusu yazınız ve kullanınız.
+-- 6. BugÃ¼ne kadar 20Â’den fazla soru gÃ¶nderen ve hediye alan her bir Ã¼yenin her bir kategoriden, her bir zorluk dÃ¼zeyinde kaÃ§ soru gÃ¶nderdiÄŸini listeleyecek bir SQL sorgusu yazÄ±nÄ±z ve kullanÄ±nÄ±z.
 
 SELECT u.Uadi, COUNT(sg.Uno) FROM soruGonder sg, uyelik u
 where u.Uno=sg.Uno and u.Uno in (SELECT Uno FROM istatistik i, hediye h where i.istNo=h.istNo)
